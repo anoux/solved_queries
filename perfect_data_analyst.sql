@@ -38,7 +38,7 @@ VALUES
 (1016, NULL, 'X', NULL,	NULL, NULL, NULL, NULL, 'X'),
 (1017, 'X', 'X', NULL, NULL, 'X', NULL, NULL, NULL),
 (1018, NULL, 'X', NULL, 'X', 'X', NULL, NULL, NULL),
-(1019, 'X', 'X', 'X', NULL,	'X', 'X', NULL, 'X')
+(1019, 'X', 'X', 'X', NULL, 'X', 'X', NULL, 'X')
 ;
 
 SELECT candidate_id FROM candidates 
