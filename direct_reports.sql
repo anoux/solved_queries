@@ -35,20 +35,11 @@ VALUES
 (1018, 'Database Developer', 1007),
 (1019, 'Data Analyst', 1001)
 ;
-/*
-SELECT COUNT(managers_id)
-FROM direct_reports
-WHERE position LIKE '%Manager%'
-GROUP BY position
-
-SELECT COUNT(managers_id) AS number_of_direct_reports
-FROM direct_reports
-WHERE position LIKE '%Manager%'
-
-*/*/
-
-SELECT m.employee_id AS manager_id, m.position AS manager_position, COUNT(*) AS direct_reports
-FROM direct_reports as e
-INNER JOIN direct_reports as m ON e.managers_id = m.employee_id
-WHERE m.position LIKE '%Manager%'
-GROUP BY m.employee_id, m.position;
+*/
+ 
+SELECT d1.managers_id, d1.position, COUNT(d1.managers_id)
+FROM direct_reports AS d1
+INNER JOIN direct_reports AS d2
+ON d1.managers_id = d2.employee_id
+WHERE d1.managers_id = 1013
+GROUP BY d1.managers_id, d1.position
