@@ -1,4 +1,4 @@
-/*Car Failure
+/*Direct reports
 
 Write a query to determine how many direct reports each Manager has.
 
@@ -7,10 +7,10 @@ Note: Managers will have "Manager" in their title.
 Report the Manager ID, Manager Title, and the number of direct reports in your output.
 */
 
-/* CREATE TABLE IF NOT EXIST direct_reports (
+CREATE TABLE direct_reports (
 employee_id int,
 position text,
-managers_id int
+manager_id int
 );
 
 INSERT INTO direct_reports
@@ -35,11 +35,26 @@ VALUES
 (1018, 'Database Developer', 1007),
 (1019, 'Data Analyst', 1001)
 ;
-*/
- 
-SELECT d1.managers_id, d1.position, COUNT(d1.managers_id)
+
+ SELECT * FROM direct_reports
+SELECT d1.manager_id, d1.position, COUNT(d1.manager_id)
 FROM direct_reports AS d1
 INNER JOIN direct_reports AS d2
-ON d1.managers_id = d2.employee_id
-WHERE d1.managers_id = 1013
-GROUP BY d1.managers_id, d1.position
+ON d1.manager_id = d2.employee_id
+WHERE d1.manager_id = 1013
+GROUP BY d1.manager_id, d1.position
+
+SELECT 
+    m.employee_id AS ManagerID,
+    m.position AS ManagerTitle,
+    COUNT(e.employee_id) AS DirectReports
+FROM 
+    YourTableName m
+LEFT JOIN 
+    YourTableName e ON m.employee_id = e.manager_id
+WHERE 
+    m.position LIKE '%Manager%'
+GROUP BY 
+    m.employee_id, m.position
+ORDER BY 
+    m.employee_id;
